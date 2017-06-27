@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/tkchari/Desktop/Projects/Udacity/sdcND/CarND-Extended-Kalman-Filter-Project
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/tkchari/Desktop/Projects/Udacity/sdcND/CarND-Extended-Kalman-Filter-Project/cmake-build-debug
