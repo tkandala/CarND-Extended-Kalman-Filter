@@ -1,3 +1,4 @@
+#include <iostream>
 #include "kalman_filter.h"
 
 using Eigen::MatrixXd;
@@ -62,6 +63,12 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
   float rho = sqrt(px*px+py*py);
   float phi = atan2(py, px) * 180/M_PI;
+
+  if(rho < 0.0001){
+      std::cout << "UpdateEKF () - Error - Division by Zero" << std::endl;
+      return;
+  }
+
   float rho_dot = (px*vx + py*vy)/rho;
 
   // Normalize phi
