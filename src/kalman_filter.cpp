@@ -75,13 +75,6 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
   float rho_dot = (px*vx + py*vy)/rho;
 
-  // Normalize phi
-  phi = fmod(phi + 180,360);
-  if (phi < 0)
-      phi += 360;
-  phi -= 180;
-  phi *= M_PI / 180;
-
   h(0,0) = rho;
   h(1,0) = phi;
   h(2,0) = rho_dot;
@@ -89,6 +82,9 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   //std::cout << "UpdateEKF () - finished calculating h" << std::endl;
 
   VectorXd y = z - h;
+
+  y(1) = std::atan2(sin(y(1)), cos(y(1)));
+
   //std::cout << "UpdateEKF () - finished calculating y" << std::endl;
   MatrixXd Ht = H_.transpose();
   //std::cout << "UpdateEKF () - finished calculating Ht" << std::endl;
