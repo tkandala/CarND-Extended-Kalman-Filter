@@ -66,7 +66,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   float vy = x_(3);
 
   float rho = sqrt(px*px+py*py);
-  float phi = atan2(py, px) * 180/M_PI;
+  float phi = atan2(py, px);
 
   if(rho < 0.0001){
       std::cout << "UpdateEKF () - Error - Division by Zero" << std::endl;
@@ -83,7 +83,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
   VectorXd y = z - h;
 
-  y(1) = std::atan2(sin(y(1)), cos(y(1)));
+  y(1) = atan2(sin(y(1)), cos(y(1)));
 
   //std::cout << "UpdateEKF () - finished calculating y" << std::endl;
   MatrixXd Ht = H_.transpose();
